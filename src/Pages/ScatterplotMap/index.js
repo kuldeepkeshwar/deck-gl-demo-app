@@ -32,7 +32,7 @@ export default class Container extends React.Component {
     const data = this.state.data;
     return (
       <div>
-        {data && <InfoPanel data={data}/>}
+        <InfoPanel data={data}/>
       <Map
         initialViewState={initialViewState}
         mapboxApiAccessToken={MAPBOX_TOKEN}
