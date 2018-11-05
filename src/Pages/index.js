@@ -1,7 +1,7 @@
 import React from "react";
 import Basic from "./Basic";
 import ScatterplotMap from "./ScatterplotMap";
-import HeatMap from "./HeatMap";
+import HexagonLayer from "./HexagonLayer";
 import TimeLine from "./TimeLine";
 
 const Home = () => <h2 className="title">Demo App to showcase deck.gl</h2>;
@@ -23,13 +23,13 @@ export default [
     path: "/scatterplot/",
     exact: true,
     component: ScatterplotMap,
-    label: "Scatterplot Map"
+    label: "Scatterplot Layer"
   },
   {
-    path: "/heatmap/",
+    path: "/hexagon-layer/",
     exact: true,
-    component: HeatMap,
-    label: "Heat Map"
+    component: HexagonLayer,
+    label: "Hexagon Layer"
   },
   {
     path: "/time-line/",
