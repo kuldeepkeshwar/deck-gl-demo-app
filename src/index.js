@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "mapbox-gl/dist/mapbox-gl.css"
 import "./styles.scss";
 import routes from './Pages';
 
