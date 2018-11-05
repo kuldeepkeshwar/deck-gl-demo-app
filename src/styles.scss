@@ -1,0 +1,95 @@
+@import "/node_modules/mapbox-gl/dist/mapbox-gl.css";
+
+body {
+  font-family: ff-clan-web-pro, Helvetica Neue, Helvetica, sans-serif !important;
+  font-size: 12px;
+}
+a,
+a:visited {
+  color: #00ade6;
+}
+.header {
+  top: 0;
+  font-size: 14px;
+  position: absolute;
+  & ul {
+    display: flex;
+
+    & li {
+      margin: 0.5rem;
+      list-style: none;
+    }
+  }
+}
+
+.container {
+  top: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.title{
+  text-align: center;
+}
+
+.info-panel {
+  z-index: 1;
+  position: relative;
+  width: 284px;
+  background: #fff;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+  margin: 24px;
+  padding: 12px 24px;
+  outline: none;
+  & .layout {
+    display: table;
+    width: 100%;
+    & .col-1-2 {
+      width: 50%;
+    }
+  }
+  & .legend {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+  }
+  & .text-right {
+    text-align: right;
+  }
+}
+.top-left,
+.top-right {
+  position: absolute;
+  top: 0;
+}
+.top-right {
+  right: 0;
+}
+.stat {
+  text-transform: uppercase;
+  font-size: 0.833em;
+}
+.stat b {
+  display: block;
+  font-size: 3em;
+}
+.layout > * {
+  display: table-cell !important;
+}
+
+.tooltip {
+  z-index: 1;
+  position: absolute;
+  background: black;
+  color: white;
+  padding: 10px;
+  & .row {
+    display: flex;
+  }
+  & .label,
+  .value {
+    margin: 0px 10px 5px 10px;
+    width: 50%;
+  }
+}

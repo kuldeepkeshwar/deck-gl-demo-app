@@ -6,11 +6,17 @@
   "main": "src/index.js",
   "dependencies": {
     "deck.gl": "6.2.3",
+    "papaparse": "^4.6.1",
     "react": "16.5.2",
     "react-dom": "16.5.2",
-    "react-scripts": "2.0.3"
+    "react-map-gl": "^3.3.8",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.3",
+    "workerize": "^0.1.7"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.9.4"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

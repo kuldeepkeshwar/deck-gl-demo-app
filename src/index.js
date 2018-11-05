@@ -1,16 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import "./styles.scss";
+import routes from './Pages';
 
-import "./styles.css";
-
-function App() {
+function Header({ routes }) {
   return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-    </div>
+    <nav className="header">
+      <ul>
+        {routes.map(({ path, label }) => (
+          <li key={path}>
+            <Link to={path}>{label}</Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
+const App = ({ routes }) => {
+  const style = {
+    height: window.screen.availHeight - 150
+  };
+  return (
+    <Router>
+      <div>
+        <Header routes={routes} />
+        <div style={style} className="container">
+          {routes.map(({ path, exact, component }) => (
+            <Route key={path} path={path} exact={exact} component={component} />
+          ))}
+        </div>
+      </div>
+    </Router>
+  );
+};
+
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App routes={routes}/>, rootElement);
