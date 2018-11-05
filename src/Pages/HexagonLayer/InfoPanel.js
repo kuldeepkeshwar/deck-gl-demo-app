@@ -1,6 +1,7 @@
 import React from 'react';
+import Loader from './../../Components/Loader';
 
-export default function InfoPanel({data=[]}) {
+export default function InfoPanel({data}) {
   return (<div className="info-panel top-right">
     <h3>United Kingdom Road Safety</h3>
     <p>Personal injury road accidents in GB from 1979</p>
@@ -39,10 +40,9 @@ export default function InfoPanel({data=[]}) {
       Data source: <a href="https://data.gov.uk">DATA.GOV.UK</a>
     </p>
     <div className="layout">
-      <div className="stat col-1-2">
-        Accidents
-          <b>{data.length}</b>
-      </div>
+      {data ?<div className="stat col-1-2">
+        Accidents<b>{data.length}</b>
+      </div>:<Loader/>}
     </div>
   </div>);
 }
