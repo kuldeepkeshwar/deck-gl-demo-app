@@ -5,16 +5,20 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "cors": "^2.8.5",
     "deck.gl": "6.2.3",
+    "express": "^4.16.4",
     "papaparse": "^4.6.1",
     "react": "16.5.2",
     "react-dom": "16.5.2",
     "react-map-gl": "^3.3.8",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.3",
+    "react-vis": "^1.11.4",
     "workerize": "^0.1.7"
   },
   "devDependencies": {
+    "ndjson": "^1.5.0",
     "node-sass": "^4.9.4"
   },
   "scripts": {

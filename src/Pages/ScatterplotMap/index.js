@@ -6,9 +6,9 @@ import InfoPanel from "./InfoPanel";
 
 // Set your mapbox access token here
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
-
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 // Source data CSV
-const DATA_URL ="/data/scatterplot.json";
+const DATA_URL = SERVER_URL+"/data/scatterplot.json";
  
 // Initial viewport settings
 const initialViewState = {

@@ -37,7 +37,8 @@ export default class Map extends Component {
     this._animateHeight = this._animateHeight.bind(this);
   }
   componentDidMount() {
-    this._animate();
+    
+    this.props.animation && this._animate();
   }
   componentWillReceiveProps(nextProps) {
     if (
@@ -45,7 +46,7 @@ export default class Map extends Component {
       this.props.data &&
       nextProps.data.length !== this.props.data.length
     ) {
-      this._animate();
+      nextProps.animation && this._animate();
     }
   }
   componentWillUnmount() {
