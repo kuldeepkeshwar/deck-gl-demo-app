@@ -1,7 +1,7 @@
 import React from "react";
 
 import Loader from "./../../Components/Loader";
-export default function InfoPanel({ data }) {
+export default function InfoPanel({ data = [], loading }) {
   return (
     <div className="info-panel top-right">
       <h3>Every Person in New York City</h3>
@@ -11,15 +11,12 @@ export default function InfoPanel({ data }) {
       <p>
         Data source: <a href="http://www.census.gov">US Census Bureau</a>
       </p>
-      <div className="stat">
-        {data ? (
-          <div>
-            No.of Instances
-            <b>{data.length}</b>
-          </div>
-        ) : (
-          <Loader />
-        )}
+      <div className="layout">
+        <div className="stat col-1-2">
+          No.of Instances
+          <b>{data.length}</b>
+        </div>
+        {loading && <Loader />}
       </div>
     </div>
   );

@@ -1,12 +1,12 @@
 import React from "react";
-import {fetchCSV} from "../../utils";
+import {extend,debounce} from "../../utils";
 import Map from "./Map";
 import InfoPanel from "./InfoPanel";
 // Set your mapbox token here
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // eslint-disable-line
-
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 // Source data CSV
-const DATA_URL = "/data/heatmap.csv";
+const DATA_URL = SERVER_URL+"/data/heatmap.csv";
 
 const INITIAL_VIEW_STATE = {
   longitude: -1.4157267858730052,
@@ -19,21 +19,38 @@ const INITIAL_VIEW_STATE = {
 };
 
 export default class Container extends React.Component {
-  state = { data: null };
+  state = { data: undefined ,animation:false,loading:true};
+  _data=[];
   async componentDidMount() {
-    const data = await fetchCSV(DATA_URL);
-    this.setState({
-      data
-    });
+    const instance=this;
+    const worker= new Worker("/workers/fetch-csv.js");
+    worker.postMessage({url:DATA_URL,withHeaders:true});
+    worker.onmessage = (e)=> {
+      const {done,value}=e.data;
+      if(!done){
+        instance._data=extend(instance._data,value);
+        instance.updateMap({data:instance._data})
+      }else{
+        instance.setState({animation:true,loading:false})
+        worker.terminate();
+      }
+    }
+  }
+  updateMap=debounce((state)=>{
+    this.setState(state)
+  },16)
+  componentWillUnmount() {
+    this.worker && this.worker.terminate();
   }
   render() {
-    const data = this.state.data;
+    const {data,loading} = this.state;
     return (
       <div>
-        <InfoPanel data={data}/>
+        <InfoPanel data={data} loading={loading}/>
         <Map
           initialViewState={INITIAL_VIEW_STATE}
           mapboxApiAccessToken={MAPBOX_TOKEN}
+          animation={this.state.animation}
           data={data}
         />
       </div>

@@ -23,8 +23,8 @@ export default class Map extends React.Component {
         data,
         radiusScale: radius,
         radiusMinPixels: 0.1,
-        getPosition: d => [d[0], d[1], 0],
-        getColor: d => (d[2] === 1 ? maleColor : femaleColor),
+        getPosition: d => [(d.lng-0), (d.lat-0), 0],
+        getColor: d => ((d.gender-0) === 1 ? maleColor : femaleColor),
         getRadius: 1,
         updateTriggers: {
           getColor: [maleColor, femaleColor]

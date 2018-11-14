@@ -2,7 +2,7 @@ import React from "react";
 
 import Loader from "./../../Components/Loader";
 
-export default function InfoPanel({ data, fromYear, toYear }) {
+export default function InfoPanel({ data=[],loading, fromYear, toYear }) {
   return (
     <div className="info-panel top-right">
       <h3>California Earthquakes</h3>
@@ -66,14 +66,11 @@ export default function InfoPanel({ data, fromYear, toYear }) {
         Data source: <a href="https://http://ncedc.org/">NCEDC</a>
       </p>
       <div className="layout">
-        {data ? (
-          <div className="stat col-1-2">
+        <div className="stat col-1-2">
             Total Earthquakes
             <b>{data.length}</b>
           </div>
-        ) : (
-          <Loader />
-        )}
+         {loading && <Loader />}
       </div>
     </div>
   );
