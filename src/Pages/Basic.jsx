@@ -58,7 +58,7 @@ export default class App extends React.Component {
         id: "icon-layer",
         data: iconLayerData,
         pickable: true,
-        iconAtlas: "http://deck.gl/images/icon-atlas.png",
+        iconAtlas: "https://deck.gl/images/icon-atlas.png",
         iconMapping: {
           marker: {
             x: 0,
