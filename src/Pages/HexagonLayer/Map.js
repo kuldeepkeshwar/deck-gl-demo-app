@@ -87,7 +87,7 @@ export default class Map extends Component {
         elevationRange: [0, 3000],
         elevationScale: this.state.elevationScale,
         extruded: true,
-        getPosition: d => [d.lng,d.lat],
+        getPosition: d => [d.lng-0,d.lat-0],
         lightSettings: LIGHT_SETTINGS,
         opacity: 1,
         radius,

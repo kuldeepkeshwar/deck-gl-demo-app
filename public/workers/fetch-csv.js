@@ -5,8 +5,14 @@ function validate(response) {
     throw new Error("something went wrong!!");
   }
 }
+function flatten(arr,items){
+  return arr.reduce((result,item)=>{
+    return result.concat(...item);
+  },items)
+}
+
 onmessage = function(e) {
-  const { url, withHeaders = false } = e.data;
+  const { url, withHeaders = false,accumulatedSize=0 } = e.data;
   console.log("fetching:", url);
   fetch(url)
     .then(validate)
@@ -17,6 +23,7 @@ onmessage = function(e) {
       new ReadableStream({
         start() {
           let headers = null;
+          const accumulated=[];
           function push() {
             reader.read().then(({ done, value }) => {
               partialCell += decoder.decode(value || new Uint8Array(), {
@@ -38,11 +45,23 @@ onmessage = function(e) {
                     });
                     return obj;
                   });
-                  postMessage({ done: false, value: json });
+                  if(accumulatedSize>0){
+                    if(accumulated.length==accumulatedSize){
+                      postMessage({ done: false, value:flatten(accumulated,json)  });
+                      accumulated.length=0;
+                    }else{
+                      accumulated.push(json);
+                    }
+                  }else{
+                    postMessage({ done: false, value: json });
+                  }
                 } else {
                   postMessage({ done: false, value: completeCells });
                 }
               } else {
+                if(accumulated.length>0){
+                  postMessage({ done: false, value: flatten(accumulated,[]) });
+                }
                 postMessage({ done: true });
                 return;
               }

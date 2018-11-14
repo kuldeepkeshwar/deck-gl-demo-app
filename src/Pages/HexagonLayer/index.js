@@ -6,7 +6,7 @@ import InfoPanel from "./InfoPanel";
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN; // eslint-disable-line
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 // Source data CSV
-const DATA_URL = SERVER_URL+"/data/heatmap";
+const DATA_URL = SERVER_URL+"/data/heatmap.csv";
 
 const INITIAL_VIEW_STATE = {
   longitude: -1.4157267858730052,
@@ -39,6 +39,9 @@ export default class Container extends React.Component {
   updateMap=debounce((state)=>{
     this.setState(state)
   },16)
+  componentWillUnmount() {
+    this.worker && this.worker.terminate();
+  }
   render() {
     const {data,loading} = this.state;
     return (

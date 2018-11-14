@@ -1,5 +1,6 @@
 import React from 'react';
-import {XYPlot, XAxis, YAxis, VerticalRectSeries, Highlight} from 'react-vis';
+import {XYPlot, XAxis, YAxis, VerticalRectSeries} from 'react-vis';
+import Highlight from './Highlight';
 import "./styles.scss";
 import 'react-vis/dist/style.css';
 
@@ -20,8 +21,8 @@ class DragableChart extends React.Component {
     return (
       <div className="chart-container">
         <XYPlot width={500} height={200}>
-          <XAxis />
-          <YAxis />
+          <XAxis tickFormat={v => v}/>
+          <YAxis  tickLabelAngle={-90} tickFormat={v => v?`${v/1000}K`:0}/>
           <VerticalRectSeries
             data={this.props.data}
             stroke="white"
@@ -38,6 +39,8 @@ class DragableChart extends React.Component {
           <Highlight
             color="#829AE3"
             drag
+            start={start}
+            end={end}
             enableY={false}
             onDrag={updateDragState}
             onDragEnd={updateDragState}
